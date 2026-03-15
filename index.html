@@ -18,7 +18,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:var(--body);background:var(--black);color:var(--white);overflow-x:hidden;cursor:none}
+body{font-family:var(--body);background:var(--black);color:var(--white);overflow-x:hidden;cursor:none;max-width:100vw}
 
 #cursor{position:fixed;width:10px;height:10px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease)}
 #cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(230,90,40,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .4s var(--ease),height .4s var(--ease)}
@@ -123,14 +123,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:60px;display:flex;ali
 .hero-scroll::after{content:'';display:block;width:1px;height:40px;background:linear-gradient(to bottom,var(--white-faint),transparent)}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 
-@media(max-width:900px){
-  .hero-name{font-size:clamp(4rem,16vw,9rem)}
   .hero-bottom-row{grid-template-columns:1fr}
   .hero-stats-row{flex-wrap:wrap}
   .hero-stat{min-width:120px;padding:1rem 1.25rem}
 }
-@media(max-width:600px){
-  .hero-top-row{flex-direction:column;align-items:flex-start}
   .hero-name .line2{padding-left:1rem}
 }
 
@@ -203,7 +199,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:60px;display:flex;ali
 .tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;padding:.25rem .65rem;border:1px solid var(--border);color:var(--white-dim);background:var(--blue-dim);transition:all .2s}
 
 /* PROJECTS */
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;width:100%}
 .project-card{background:var(--panel);border:1px solid var(--border);position:relative;overflow:hidden;transition:all .35s var(--ease);opacity:1;transform:none;cursor:pointer}
 
 .project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--orange),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
@@ -312,13 +308,11 @@ footer{background:var(--panel);border-top:1px solid var(--border);padding:2.5rem
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 .reveal{opacity:1;transform:none;transition:opacity .6s var(--ease),transform .6s var(--ease)}
 
-@media(max-width:1024px){
-  .hero-content{grid-template-columns:1fr}.hero-left{border-right:none;border-bottom:1px solid var(--border)}.hero-right{padding-top:2rem}
+.hero-left{border-right:none;border-bottom:1px solid var(--border)}.hero-right{padding-top:2rem}
   .exp-layout{grid-template-columns:1fr}.exp-sidebar{flex-direction:row;flex-wrap:wrap;border-right:none;border-bottom:1px solid var(--border)}.exp-tab{flex:1;min-width:150px}
   #cv-section{grid-template-columns:1fr}.about-layout{grid-template-columns:1fr}.about-photo-col{min-height:300px}
 }
-@media(max-width:700px){
-  .skills-wrapper{grid-template-columns:1fr}.langs-row{flex-direction:column}.nav-links{display:none}
+.langs-row{flex-direction:column}.nav-links{display:none}
   .hero-name{font-size:clamp(4rem,15vw,7rem)}.maq-photos{grid-template-columns:1fr;height:auto}
   .maq-photos .photo-slot{height:200px}.maq-photos .photo-slot:last-child{border-left:none;border-top:1px solid var(--border)}
 }
@@ -366,8 +360,6 @@ footer{background:var(--panel);border-top:1px solid var(--border);padding:2.5rem
 .carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--border);border:none;cursor:pointer;transition:all .25s;padding:0}
 .carousel-dot.active{background:var(--orange);width:24px;border-radius:3px}
 
-@media(max-width:700px){
-  .quote-slide{position:relative;grid-template-columns:1fr;gap:1rem}
   .quote-idx{display:none}.quote-tag{display:none}
 }
 
@@ -432,6 +424,124 @@ footer{background:var(--panel);border-top:1px solid var(--border);padding:2.5rem
 .certs-group-label::before{content:'';flex:1;height:1px;background:var(--border)}
 .certs-group-label:first-of-type{margin-top:0}
 .certs-count{font-family:var(--display);font-size:5rem;color:transparent;-webkit-text-stroke:1px rgba(230,90,40,.12);line-height:1;letter-spacing:.05em}
+
+
+/* ===================== RESPONSIVE ===================== */
+@media(max-width:1024px){
+  /* Hero */
+  .hero-content{flex-direction:column}
+  .hero-name{font-size:clamp(4.5rem,12vw,10rem)}
+  .hero-bottom-row{grid-template-columns:1fr;gap:2rem}
+  .hero-stats-row{flex-wrap:wrap}
+  .hero-stat{min-width:130px;padding:1rem 1.25rem}
+
+  /* About */
+  .about-layout{grid-template-columns:1fr}
+  .about-photo-col{min-height:320px}
+  .about-content{padding:2rem}
+
+  /* Experience */
+  .exp-layout{grid-template-columns:1fr}
+  .exp-sidebar{flex-direction:row;flex-wrap:wrap;border-right:none;border-bottom:1px solid var(--border)}
+  .exp-tab{flex:1;min-width:160px}
+  .exp-main{padding:2rem}
+
+  /* CV section */
+  #cv-section{grid-template-columns:1fr;gap:3rem}
+  .cv-right{flex-direction:row;gap:2rem;justify-content:flex-start;align-items:center}
+
+  /* Projects */
+  .projects-grid{grid-template-columns:1fr 1fr}
+  .project-card[style*="grid-column:span 2"]{grid-column:span 2 !important}
+  .maq-photos{grid-template-columns:1fr;height:auto}
+  .maq-photos .photo-slot{height:220px}
+  .maq-photos .photo-slot:last-child{border-left:none;border-top:1px solid var(--border)}
+}
+
+@media(max-width:768px){
+  /* Nav */
+  .nav-links{display:none}
+  nav{padding:0 1.25rem}
+
+  /* Hero */
+  .hero-content{padding:1.5rem}
+  .hero-name{font-size:clamp(3.5rem,14vw,7rem)}
+  .hero-name .line2{padding-left:.75rem}
+  .hero-top-row{flex-direction:column;align-items:flex-start;gap:.75rem}
+  .hero-badge-strip{display:none}
+  .hero-stats-row{flex-wrap:wrap}
+  .hero-stat{min-width:calc(50% - 1px);flex:none;padding:.9rem 1rem}
+  .hero-actions{flex-direction:column;gap:.65rem}
+  .btn-hero-primary,.btn-hero-outline{width:100%;justify-content:center;text-align:center}
+  .hero-name-bg{display:none}
+
+  /* Sections */
+  .section{padding:3.5rem 1.25rem}
+  .sec-title{font-size:clamp(2rem,8vw,3.5rem)}
+
+  /* About */
+  .about-content{padding:1.5rem}
+  .about-facts{grid-template-columns:1fr}
+
+  /* Skills */
+  .skills-wrapper{grid-template-columns:1fr}
+  .langs-row{flex-direction:column}
+
+  /* Exp */
+  .exp-tab{min-width:100%}
+  .exp-main{padding:1.5rem}
+  .exp-role{font-size:1.5rem}
+
+  /* Projects */
+  .projects-grid{grid-template-columns:1fr !important}
+  .project-card[style*="grid-column:span 2"]{grid-column:span 1 !important}
+  .project-card[style*="grid-column: span 2"]{grid-column:span 1 !important}
+  .maq-photos{grid-template-columns:1fr 1fr}
+  .maq-photos .photo-slot{height:160px}
+
+  /* Library */
+  .lib-header{padding:3rem 1.25rem}
+  .lib-filters{padding:1rem 1.25rem}
+  .lib-grid{padding:1rem 1.25rem;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+  .lib-count{font-size:3rem}
+
+  /* Certs */
+  .certs-grid{grid-template-columns:1fr}
+
+  /* Citations */
+  .quote-slide{grid-template-columns:1fr;gap:1rem;padding:1.5rem}
+  .quote-idx{display:none}
+  .quote-tag{display:none}
+  .quote-text{font-size:1rem}
+  .citations-inner{padding:3rem 1.25rem}
+  .carousel-nav{gap:.5rem}
+
+  /* CV */
+  .cv-title{font-size:clamp(2.5rem,10vw,4rem)}
+  .cv-right{flex-direction:column;align-items:flex-start}
+  .cv-btn-group{flex-direction:column}
+  .cv-btn{justify-content:center}
+  .qr-frame{display:none}
+  .qr-label-text{display:none}
+
+  /* Footer */
+  footer{flex-direction:column;gap:1.25rem;padding:2rem 1.25rem}
+  .footer-links{flex-wrap:wrap;gap:1rem}
+
+  /* Modal */
+  .modal-inner{width:100vw;height:100vh;border:none}
+  .modal-bar{flex-direction:column;align-items:flex-start;gap:.75rem}
+  .modal-actions{width:100%;justify-content:space-between}
+}
+
+@media(max-width:480px){
+  .hero-name{font-size:clamp(3rem,16vw,5.5rem)}
+  .hero-stat{min-width:100%}
+  .stat-val{font-size:2rem}
+  .about-facts{grid-template-columns:1fr 1fr}
+  .lib-grid{grid-template-columns:1fr 1fr}
+  .projects-grid{grid-template-columns:1fr}
+}
 
 </style>
 </head>
