@@ -1194,9 +1194,16 @@ function renderLib(filter) {
     card.style.transitionDelay = (i * 0.05) + 's';
     (function(doc){ card.onclick = function(){ doc.url ? openDoc(doc.id) : showComingSoon(doc.title); }; })(d);
 
+    var logoMap = {
+      'UN':  '<img src="https://www.un.org/sites/un2.un.org/files/2021/03/un-logo.png" style="height:52px;width:auto;filter:brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(175deg)" alt="UN"/>',
+      'AN':  '<img src="https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/1/anthropic-icon-wii9u8ifrjrd99btrqfgi.png/anthropic-icon-tdvkiqisswbrmtkiygb0ia.png?_a=DATAiZAAZAA0" style="height:52px;width:52px;filter:brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(350deg) brightness(1.1)" alt="Anthropic"/>',
+      'CI':  '<img src="https://1000logos.net/wp-content/uploads/2016/11/Cisco-Logo-2006.png" style="height:36px;width:auto;filter:brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(175deg) brightness(1.2)" alt="Cisco"/>'
+    };
     var previewHTML = d.preview
       ? '<img src="' + d.preview + '" style="width:100%;height:100%;object-fit:cover;object-position:center top"/>'
-      : '<div class="doc-preview-inner" data-initials="' + d.initials + '"><div class="doc-type-icon">' + d.icon + '</div></div>';
+      : logoMap[d.initials]
+        ? '<div class="doc-preview-inner" data-initials=""><div class="doc-type-icon">' + logoMap[d.initials] + '</div></div>'
+        : '<div class="doc-preview-inner" data-initials="' + d.initials + '"><div class="doc-type-icon">' + d.icon + '</div></div>';
 
     var overlayHTML = !d.url
       ? '<div style="position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center"><span style="font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35)">A venir</span></div>'
